@@ -22,7 +22,7 @@ kubectl cp ./static-secrets.sh vault/vault-0:/tmp/static-secrets.sh
 kubectl exec --stdin=true --tty=true vault-0 -n vault -- /tmp/static-secrets.sh
 
 
-# Install VSO
+# Install VSO 
 
 helm install vault-secrets-operator hashicorp/vault-secrets-operator -n vault-secrets-operator-system --create-namespace --values vault/vault-operator-values.yaml
 
