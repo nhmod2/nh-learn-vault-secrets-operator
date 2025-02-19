@@ -2,8 +2,8 @@
 
 This repo is a companion to [Static secrets with the Vault Secrets Operator on Kubernetes](https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator) found on the [HashiCorp developer](https://developer.hashicorp.com/) site.  
 
-This tutorial uses a local Vault server Pod inside the same cluster.  To use a remote Vault server, follow the directions [here](https://developer.hashicorp.com/vault/docs/platform/k8s/vso/sources/vault)
-  
+This tutorial uses a local Vault server Pod inside the same cluster.  To use a remote Vault server, follow the directions [here.](https://developer.hashicorp.com/vault/docs/platform/k8s/vso/sources/vault)
+
 # Setup Vault
 
 #### Install Vault if not already available:
