@@ -4,7 +4,7 @@ This repo is a companion to [Static secrets with the Vault Secrets Operator on K
 
 # Setup Vault
 
-Install Vault if not already available:
+#### Install Vault if not already available:
 
 helm repo add hashicorp https://helm.releases.hashicorp.com
 
@@ -14,14 +14,16 @@ helm search repo hashicorp/vault
 
 helm install vault hashicorp/vault -n vault --create-namespace --values vault/vault-values.yaml
 
-Wait a few minutes for the Pod to switch to Running status
+#### Wait a few minutes for the Pod to switch to Running status
 
 ### Create secrets in Vault for the demonstration
 
 Copy bash script to Pod
+
 kubectl cp ./static-secrets.sh vault/vault-0:/tmp/static-secrets.sh 
 
 Execute bash script
+
 kubectl exec --stdin=true --tty=true vault-0 -n vault -- /tmp/static-secrets.sh
 
 
@@ -31,7 +33,7 @@ helm install vault-secrets-operator hashicorp/vault-secrets-operator -n vault-se
 
 ## Deploy demo app
 
-Create a namespace
+#### Create a namespace
 
 kubectl create ns app
 
@@ -39,7 +41,7 @@ kubectl create ns app
 
 kubectl apply -f vault/vault-auth-static.yaml
 
-Create secrets named secretkv and serverkv in the app ns
+#### Create secrets named secretkv and serverkv in the app ns
 
 kubectl apply -f vault/static-secret.yaml
 kubectl apply -f vault/another-static-secret.yaml
@@ -57,7 +59,7 @@ kubectl exec --stdin=true --tty=true vault-0 -n vault -- /bin/sh
 
 vault kv put kvv2/webapp/config username="static-user2" password="static-password2"
 
-Delete the pod envar-demo and recreate to see the newly rotated value
+#### Delete the pod envar-demo and recreate to see the newly rotated value
 
 kubectl delete pod envar-demo --now
 kubectl apply -f envar-demo.yaml
