@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envar-demo
+  namespace: app
+  labels:
+    purpose: demonstrate-envars
+spec:
+  containers:
+  - name: envar-demo-container
+    image: debian
+    env:
+      - name: SERVER_NAME
+        valueFrom:
+          secretKeyRef:
+            name: serverkv
+            key: servername
+      - name: USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: secretkv
+            key: username
+    command: ["bin/sh"]
+    args: ["-c", "while true; do echo $SERVER_NAME && echo $USERNAME; sleep 10; done"]
