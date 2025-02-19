@@ -18,11 +18,13 @@ helm install vault hashicorp/vault -n vault --create-namespace --values vault/va
 
 ### Create secrets in Vault for the demonstration
 
-Copy bash script to Pod
+Copy bash scripts to Pod
 
 kubectl cp ./static-secrets.sh vault/vault-0:/tmp/static-secrets.sh 
 
-Execute bash script
+kubectl cp ./static-secrets.sh vault/vault-0:/tmp/dynamic-secrets.sh
+
+Execute static bash script
 
 kubectl exec --stdin=true --tty=true vault-0 -n vault -- /tmp/static-secrets.sh
 
@@ -63,3 +65,27 @@ vault kv put kvv2/webapp/config username="static-user2" password="static-passwor
 
 kubectl delete pod envar-demo --now
 kubectl apply -f envar-demo.yaml
+
+# Dynamic Secrets
+
+#### Spin-up a Postgres POD
+
+kubectl create ns postgres
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+helm upgrade --install postgres bitnami/postgresql --namespace postgres --set auth.audit.logConnections=true  --set auth.postgresPassword=secret-pass
+
+#### Execute dynamic bash script
+
+kubectl exec --stdin=true --tty=true vault-0 -n vault -- /tmp/dynamic-secret.sh
+
+#### Create the demo app
+
+kubectl create ns demo-ns
+
+kubectl apply -f dynamic-secrets/.
+
+#### Observe the secrets via K9S
+
+

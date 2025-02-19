@@ -1,3 +1,4 @@
+#!/bin/sh
 set -xe
 export VAULT_NAMESPACE=us-west-org
 
