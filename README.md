@@ -7,8 +7,11 @@ This repo is a companion to [Static secrets with the Vault Secrets Operator on K
 Install Vault if not already available:
 
 helm repo add hashicorp https://helm.releases.hashicorp.com
+
 helm repo update
+
 helm search repo hashicorp/vault
+
 helm install vault hashicorp/vault -n vault --create-namespace --values vault/vault-values.yaml
 
 ### Wait a few minutes for the Pod to switch to Running status
