@@ -4,13 +4,16 @@ This repo is a companion to [Static secrets with the Vault Secrets Operator on K
 
 # Setup Vault
 
-1. Install Vault if not already available
+Install Vault if not already available:
 
+helm repo add hashicorp https://helm.releases.hashicorp.com
+helm repo update
+helm search repo hashicorp/vault
 helm install vault hashicorp/vault -n vault --create-namespace --values vault/vault-values.yaml
 
 ### Wait a few minutes for the Pod to switch to Running status
 
-2. Create secrets in Vault for the demonstration
+Create secrets in Vault for the demonstration
 
 ### Copy bash script to Pod
 kubectl cp ./static-secrets.sh vault/vault-0:/tmp/static-secrets.sh 
@@ -45,7 +48,7 @@ kubectl apply -f envar-demo-.yaml
 ### After a minute or so, peek inside the logs and you should see the values of the mapped environment variables
 kubectl logs -f envar-demo
 
-## Rotate the secret.  This can be done in the Vault console or the CLI as below.
+### Rotate the secret.  This can be done in the Vault console or the CLI as below.
 
 kubectl exec --stdin=true --tty=true vault-0 -n vault -- /bin/sh
 
