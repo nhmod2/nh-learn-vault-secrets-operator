@@ -25,7 +25,7 @@ helm install vault-secrets-operator hashicorp/vault-secrets-operator -n vault-se
 
 ### Deploy demo app
 
-##Create a namespace
+## Create a namespace
 
 kubectl create ns app
 
@@ -45,7 +45,7 @@ kubectl apply -f envar-demo-.yaml
 ### After a minute or so, peek inside the logs and you should see the values of the mapped environment variables
 kubectl logs -f envar-demo
 
-# Rotate the secret.  This can be done in the Vault console or the CLI as below.
+## Rotate the secret.  This can be done in the Vault console or the CLI as below.
 
 kubectl exec --stdin=true --tty=true vault-0 -n vault -- /bin/sh
 
