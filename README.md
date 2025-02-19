@@ -2,17 +2,17 @@
 
 This repo is a companion to [Static secrets with the Vault Secrets Operator on Kubernetes](https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator) found on the [HashiCorp developer](https://developer.hashicorp.com/) site.
 
-#Setup Vault
+# Setup Vault
 
 1. Install Vault if not already available
 
 helm install vault hashicorp/vault -n vault --create-namespace --values vault/vault-values.yaml
 
-## Wait a few minutes for the Pod to switch to Running status
+### Wait a few minutes for the Pod to switch to Running status
 
 2. Create secrets in Vault for the demonstration
 
-## Copy bash script to Pod
+### Copy bash script to Pod
 kubectl cp ./static-secrets.sh vault/vault-0:/tmp/static-secrets.sh 
 
 ## Execute bash script
