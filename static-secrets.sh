@@ -29,4 +29,6 @@ sleep 10
 
 vault kv put kvv2/webapp/config username="static-user1" password="static-password1"
 vault kv put kvv2/webapp/config2 servername="server1" password="secretpassword1"
+vault kv put kvv2/webapp/config3 ipaddress="10.0.0.1" subnet="255.255.255.0"
+
 
