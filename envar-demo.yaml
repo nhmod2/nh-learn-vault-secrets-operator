@@ -20,5 +20,8 @@ spec:
           secretKeyRef:
             name: secretkv
             key: username
+    envFrom:
+      - secretRef:
+          name: hostkv        
     command: ["bin/sh"]
-    args: ["-c", "while true; do echo $SERVER_NAME && echo $USERNAME; sleep 10; done"]
+    args: ["-c", "while true; do echo $SERVER_NAME && echo $USERNAME && echo $ipaddress && echo $subnet; sleep 10; done"]
