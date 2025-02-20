@@ -9,6 +9,13 @@ spec:
   containers:
   - name: envar-demo-container
     image: debian
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+      requests:
+        memory: "256Mi"
+        cpu: "250m"   
     env:
       - name: SERVER_NAME
         valueFrom:
